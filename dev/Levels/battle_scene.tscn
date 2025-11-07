@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpxx8njmqg5mg"]
+
+[ext_resource type="Script" uid="uid://dp77kt7cho338" path="res://dev/Scripts/battle_scene.gd" id="1_m2v6h"]
+[ext_resource type="Script" uid="uid://dgl2sswbxk8j6" path="res://dev/Levels/battle_manager.gd" id="2_0xn4k"]
+[ext_resource type="PackedScene" uid="uid://cavhiq8b25tph" path="res://DONOTEDITME/menu/pause_menu.tscn" id="2_pv1ul"]
+[ext_resource type="PackedScene" uid="uid://jjry0jh0kb1c" path="res://dev/Characters/jammy_charactertscn.tscn" id="3_se4fn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_se4fn"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_pv1ul"]
+sky_material = SubResource("ProceduralSkyMaterial_se4fn")
+
+[sub_resource type="Environment" id="Environment_cj2un"]
+background_mode = 2
+sky = SubResource("Sky_pv1ul")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_28sfo"]
+size = Vector2(100, 100)
+
+[node name="battle_scene" type="Node3D"]
+script = ExtResource("1_m2v6h")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_pv1ul")]
+unique_name_in_owner = true
+editor_description = "This is the pause menu object instance. You shouldn't need to touch this at all so DO NOT TOUCH THIS."
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cj2un")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="BattleManager" type="Node3D" parent="."]
+script = ExtResource("2_0xn4k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.99665886, 0.04206701, -0.070011295, -1.4765817e-08, 0.85716736, 0.515038, 0.081677504, 0.5133172, -0.8543034, -2.5268424, 7.0299435, -20.919674)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_28sfo")
+
+[node name="Player_Team" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.345818)
+
+[node name="3DJammy" parent="Player_Team" instance=ExtResource("3_se4fn")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.1353765, 0.2256298)
