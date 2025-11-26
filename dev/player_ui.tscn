@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bneba4esft3ff"]
+
+[node name="Player_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player_Action" type="Container" parent="."]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 441.0
+offset_right = 454.0
+offset_bottom = 481.0
+
+[node name="Item" type="Button" parent="Player_Action"]
+layout_mode = 2
+text = "Item"
+
+[node name="Special" type="Button" parent="Player_Action"]
+layout_mode = 2
+text = "Special"
+alignment = 0
+
+[node name="Attack" type="Button" parent="Player_Action"]
+layout_mode = 2
+
+[node name="Player_Stats" type="Container" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 584.0
+offset_right = 934.0
+offset_bottom = 624.0
+
+[node name="HealthBar" type="ProgressBar" parent="Player_Stats"]
+layout_mode = 2
+show_percentage = false
+
+[node name="ManaBar" type="ItemList" parent="Player_Stats"]
+layout_mode = 2
+max_columns = 8

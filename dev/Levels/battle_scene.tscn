@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpxx8njmqg5mg"]
+[gd_scene load_steps=12 format=3 uid="uid://cpxx8njmqg5mg"]
 
 [ext_resource type="Script" uid="uid://dp77kt7cho338" path="res://dev/Scripts/battle_scene.gd" id="1_m2v6h"]
-[ext_resource type="Script" uid="uid://dgl2sswbxk8j6" path="res://dev/Levels/battle_manager.gd" id="2_0xn4k"]
+[ext_resource type="Script" uid="uid://dgl2sswbxk8j6" path="res://dev/Scripts/battle_manager.gd" id="2_0xn4k"]
 [ext_resource type="PackedScene" uid="uid://cavhiq8b25tph" path="res://DONOTEDITME/menu/pause_menu.tscn" id="2_pv1ul"]
 [ext_resource type="PackedScene" uid="uid://jjry0jh0kb1c" path="res://dev/Characters/jammy_charactertscn.tscn" id="3_se4fn"]
+[ext_resource type="Script" uid="uid://cmlxeq7fx4fq8" path="res://dev/Scripts/player_team.gd" id="4_cj2un"]
+[ext_resource type="PackedScene" uid="uid://ye0g1auxw564" path="res://dev/Characters/Enemy/enemy_1.tscn" id="6_uwrpu"]
+[ext_resource type="Script" uid="uid://cn2j4sbpxrynl" path="res://dev/Scripts/enemy_team.gd" id="6_yiwea"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_se4fn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,8 +38,10 @@ environment = SubResource("Environment_cj2un")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="BattleManager" type="Node3D" parent="."]
+[node name="BattleManager" type="Node3D" parent="." node_paths=PackedStringArray("player_character", "ai_character")]
 script = ExtResource("2_0xn4k")
+player_character = NodePath("../Player_Team")
+ai_character = NodePath("../Enemy_Team")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.99665886, 0.04206701, -0.070011295, -1.4765817e-08, 0.85716736, 0.515038, 0.081677504, 0.5133172, -0.8543034, -2.5268424, 7.0299435, -20.919674)
@@ -45,7 +50,16 @@ transform = Transform3D(-0.99665886, 0.04206701, -0.070011295, -1.4765817e-08, 0
 mesh = SubResource("PlaneMesh_28sfo")
 
 [node name="Player_Team" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.345818)
+script = ExtResource("4_cj2un")
 
 [node name="3DJammy" parent="Player_Team" instance=ExtResource("3_se4fn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.1353765, 0.2256298)
+
+[node name="Enemy_Team" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.4981642, 0)
+script = ExtResource("6_yiwea")
+
+[node name="Enemy1" parent="Enemy_Team" instance=ExtResource("6_uwrpu")]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ye0g1auxw564"]
+
+[ext_resource type="PackedScene" uid="uid://bywq72nk3tnb7" path="res://dev/models/Enemy1.blend" id="1_nqxxm"]
+[ext_resource type="Script" uid="uid://cv6a1mcemo2j5" path="res://dev/Scripts/enemy.gd" id="2_shaqk"]
+
+[node name="Enemy1" instance=ExtResource("1_nqxxm")]
+script = ExtResource("2_shaqk")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(-7.619635e-16, -0.04378093, 0.2572124)
+bones/1/rotation = Quaternion(-1.9470316e-07, -0.006409859, 0.99997956, 1.2480451e-09)
+bones/2/position = Vector3(1.0843488e-14, -0.04378092, -0.29204106)
+bones/2/rotation = Quaternion(-1.9470316e-07, -0.006409859, 0.99997956, 1.2480451e-09)
